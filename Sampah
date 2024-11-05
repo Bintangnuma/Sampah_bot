@@ -1,0 +1,144 @@
+import discord
+from discord.ext import commands
+import random
+import requests
+
+import os
+files = os.listdir('image')
+file  = os.listdir('animal')
+
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='@', intents=intents)
+
+def get_duck_image_url():    
+    url = 'https://random-d.uk/api/random'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+def get_dog_image_url():    
+    url = 'https://random.dog/woof.json'
+    res = requests.get(url)
+    data = res.json()
+    return data['url']
+
+@bot.event
+async def on_ready():
+    print(f'We have logged in as {bot.user}')
+
+@bot.command()
+async def cara_jaga_bumi(ctx):
+    with open('image/rrr.webp', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Hi! I am a bot {bot.user}!')
+
+@bot.command()
+async def glasses(ctx):
+    with open('image/glasses.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+@bot.command()
+async def violin(ctx):
+    with open('image/violin.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+@bot.command()
+async def rhino(ctx):
+    with open('animal/badak.jpeg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+@bot.command()
+async def tiger(ctx):
+    with open('animal/harimau.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)
+
+@bot.command()
+async def monkey(ctx):
+    with open('animal/monyet.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture)   
+
+@bot.command()
+async def panda(ctx):
+    with open('animal/panda.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture) 
+
+@bot.command()
+async def lion(ctx):
+    with open('animal/singa.jpg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture) 
+
+@bot.command()
+async def jenis_sampah(ctx):
+    with open('image/Sampah.png', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture) 
+
+@bot.command()
+async def squirrel(ctx):
+    with open('animal/tupai.jpeg', 'rb') as f:
+        # Mari simpan file perpustakaan/library Discord yang dikonversi dalam variabel ini!
+        picture = discord.File(f)
+   # Kita kemudian dapat mengirim file ini sebagai tolok ukur!
+    await ctx.send(file=picture) 
+
+@bot.command()
+async def thing(ctx):
+    image= random.choice(files)
+    with open(f'image/{image}', 'rb') as f:
+        picture = discord.File(f)
+        
+    await ctx.send(file=picture)
+
+@bot.command()
+async def animal(ctx):
+    animal = random.choice(file)
+    with open(f'animal/{animal}', 'rb') as f:
+        picture = discord.File(f)
+        
+    await ctx.send(file=picture)
+
+@bot.command('duck')
+async def duck(ctx):
+    '''Setelah kita memanggil perintah bebek (duck), program akan memanggil fungsi get_duck_image_url'''
+    image_url = get_duck_image_url()
+    await ctx.send(image_url)
+
+@bot.command('dog')
+async def dog(ctx):
+    '''Setelah kita memanggil perintah anjing (dog), program akan memanggil fungsi get_fox_image_url'''
+    image_url = get_dog_image_url()
+    await ctx.send(image_url)
+
+bot.run("MTMwMTg3MDQ4OTc4NTg2MDA5Ng.GwH1Rv.JeRHKjfDRTwqAeW-yUO1YKJJO3RjVRo8ZOkNC8")
